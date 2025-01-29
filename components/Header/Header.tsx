@@ -1,10 +1,8 @@
-"use client"
 import { HelpingHand, PenBox } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ThemeChangeButton } from "../Buttons/ThemeChangeButton"
-import { SignedOut } from "@clerk/nextjs"
-import { SignedIn, SignInButton } from "@clerk/clerk-react"
+import { SignedOut, SignedIn, SignInButton } from "@clerk/nextjs"
 import CustomUserButton from "../UserButton/CustomUserButton"
 
 function Header() {
