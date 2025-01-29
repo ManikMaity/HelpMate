@@ -1,4 +1,5 @@
-import { BookCheckIcon, HelpingHandIcon, Laptop, Share2, Timer, User, UserPlus } from "lucide-react";
+import { BarChartHorizontalBig, BookCheckIcon, Calendar, Clock, HelpingHandIcon, icons, Laptop, LucideProps, Share2, Timer, User, UserPlus, Users } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export interface KeyFeatureProp {
   icon: React.ElementType;
@@ -98,3 +99,32 @@ export  const howItWorks: Step[] = [
         icon : HelpingHandIcon
     }
   ];  
+
+  interface LayoutOptionProp {
+    href : string,
+    label : string,
+    icon :  ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
+  }
+
+ export const mainLayoutOptions : LayoutOptionProp[]  = [
+    {
+      href : "/dashboard",
+      label : "Dashboard",
+      icon : BarChartHorizontalBig
+    },
+    {
+      href : "/events", 
+      label : "Events",
+      icon : Calendar
+    },
+    {
+      href : "/meetings",
+      label : "Meetings",
+      icon : Users
+    },
+    {
+      href : "/availability",
+      label : "Availability",
+      icon : Clock
+    }
+  ]

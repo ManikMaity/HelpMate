@@ -4,8 +4,12 @@ import { Button } from "@/components/ui/button"
 import { ThemeChangeButton } from "../Buttons/ThemeChangeButton"
 import { SignedOut, SignedIn, SignInButton } from "@clerk/nextjs"
 import CustomUserButton from "../UserButton/CustomUserButton"
+import checkUser from "@/lib/checkUser"
 
-function Header() {
+async function Header() {
+
+  await checkUser();
+
   return (
     <header className="bg-white dark:bg-slate-950 shadow-md border-b">
       <nav className="mx-auto py-2 px-4 flex items-center justify-between">
