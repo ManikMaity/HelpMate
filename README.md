@@ -342,3 +342,45 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_production_publishable_key
 - **Custom Tokens**: Create JWT templates for backend services
 
 For complete documentation, refer to the [official Clerk docs](https://clerk.com/docs).
+
+## React hook Form and Zod Validation
+```bash
+npm i react-hook-form zod @hookform/resolvers
+```
+
+- Use the useForm hook from react-hook-form to handle form state and validation.
+```tsx
+import {useForm} from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+```
+```tsx
+  const {register, handleSubmit} = useForm({
+    resolver: zodResolver(usernameSchema)
+  });
+```
+- We have create a validation schema in zod.
+```tsx
+import { z } from "zod";
+
+export const usernameSchema = z.object({
+    username: z.string({
+      message: "Please enter a valid username",
+      required_error: "Username is required",
+    }).min(3, {message: "Username must be at least 3 characters"}).max(20, {message: "Username must be less than 20 characters"})
+    .regex(/^[a-zA-Z0-9_]+$/, {message: "Username can only contain letters, numbers, and underscores"})
+  });
+```
+- Now we can use the register function to bind the input field to the form state.
+```tsx
+ <Input {...register("username")} value={user?.username} />
+ ```
+ - We can use the handleSubmit function to handle form submission.
+ ```tsx
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+```
+- The onSubmin inside the handleSubmit is our custom function.
+- For error and seting the value of the input field. can use setValue, formState.
+
+## Server Actions 
+- To write server action need to create an `action` folder in the root directory of the project.
+- This only run in server side so, client would not see the api calls.

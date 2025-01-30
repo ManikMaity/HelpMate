@@ -45,11 +45,12 @@ function MainLayout({ children }: { children: React.ReactNode }) {
             </header>
             {children}
           </main>
-          <nav >
-              <ul className="flex gap-2">
+          <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-950 shadow-md">
+              <ul className="grid grid-cols-4 gap-1">
                 {mainLayoutOptions.map((option, index) => (
                   <Link key={index} href={option.href}>
                     <Button
+                    className="flex flex-col text-xs p-4"
                       variant={
                         pathname === option.href
                           ? "sidebarBtnActive"
