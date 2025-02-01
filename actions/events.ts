@@ -56,3 +56,35 @@ export async function getUserEvents() {
 
     return {events, username : exiting.username};
 }
+
+export async function deleteEvent(id) {
+    const {userId} = await auth();
+    if (!userId) {
+        throw new Error("User not authenticated");
+    }
+
+    const exiting  = await db.user.findUnique({
+        where : {clerkUserId : userId}
+    });
+    if (!exiting) {
+        throw new Error("User not found");
+    }
+    
+    const event = await db.event.findUnique({
+        where : {
+            id
+        }
+    });
+
+    if (!event || event.userId !== exiting.id){
+        throw new Error("Event not found");
+    }
+
+    await db.event.delete({
+        where : {
+            id
+        }
+    });
+
+    return {success : true};
+}
