@@ -6,6 +6,7 @@ import Header from "@/components/Header/Header";
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
+import DarwersContainer from "@/components/Drawers/DarwersContainer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
         <main className="min-h-screen dark:bg-slate-900 bg-blue-50">
           {children}
         </main>
+        <DarwersContainer/>
         </ThemeProvider>
       </body>
     </html>
